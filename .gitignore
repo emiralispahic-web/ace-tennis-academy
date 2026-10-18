@@ -1,0 +1,28 @@
+
+# Environment variables
+.env
+.env.*
+
+# Keep example environment files
+!.env.example
+
+# Dependencies
+vendor/
+node_modules/
+
+# Logs
+*.log
+backend/logs/*
+
+# Keep directory placeholder
+!backend/logs/.gitkeep
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak

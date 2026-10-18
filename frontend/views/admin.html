@@ -1,0 +1,116 @@
+
+<section class="content-page admin-page">
+
+    <h2>Admin Panel</h2>
+    <p>Manage Ace Tennis Academy.</p>
+
+    <div class="admin-cards">
+
+        <div class="admin-card">
+            <h3>Players</h3>
+            <p>Manage registered players.</p>
+            <a href="#profile">View Player Profile</a>
+        </div>
+
+        <div class="admin-card">
+            <h3>Coaches</h3>
+            <p>Manage tennis coaches.</p>
+            <a href="#coaches">View Coaches</a>
+        </div>
+
+        <div class="admin-card">
+            <h3>Trainings</h3>
+            <p>Manage training sessions.</p>
+            <a href="#trainings">View Trainings</a>
+        </div>
+
+        <div class="admin-card">
+            <h3>Courts</h3>
+            <p>Manage tennis courts.</p>
+            <a href="#courts">View Courts</a>
+        </div>
+
+    </div>
+
+    <div class="admin-management">
+
+        <h3>Manage Coaches</h3>
+        <p>Add a coach to the demonstration list.</p>
+
+        <form id="addCoachForm">
+
+            <div class="form-group">
+                <label for="coachName">Coach Name</label>
+                <input
+                    type="text"
+                    id="coachName"
+                    placeholder="Enter coach name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="coachSpecialty">Specialization</label>
+                <select id="coachSpecialty" required>
+                    <option value="">Select specialization</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+            </div>
+
+            <button type="submit" class="admin-add-btn">
+                Add Coach
+            </button>
+
+        </form>
+
+        <h3>Coaches List</h3>
+
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Specialization</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="adminCoachesList">
+                    <tr>
+                        <td>Marko Petrovic</td>
+                        <td>Beginner</td>
+                        <td>
+                            <button type="button" class="admin-delete-btn">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Amar Hadzic</td>
+                        <td>Intermediate</td>
+                        <td>
+                            <button type="button" class="admin-delete-btn">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>David Kovac</td>
+                        <td>Advanced</td>
+                        <td>
+                            <button type="button" class="admin-delete-btn">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</section>
