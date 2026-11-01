@@ -52,3 +52,53 @@ Current focus:
 - Documentation
 
 Backend integration will be implemented in future milestones.
+
+
+## Milestone 2 - Database and DAO Layer
+
+### Database
+The project uses MySQL with a database named `ace_tennis_academy`.
+
+The database contains five tables:
+- users
+- coaches
+- courts
+- training_sessions
+- bookings
+
+Primary keys and foreign keys are used to maintain relationships between tables.
+
+The database schema and sample data are exported in `ace_tennis_academy.sql`.
+
+### Backend Architecture
+The backend is developed using PHP and PDO.
+
+The `backend/dao` directory contains:
+- BaseDao.php
+- UserDao.php
+- CoachDao.php
+- CourtDao.php
+- TrainingSessionDao.php
+- BookingDao.php
+
+BaseDao provides reusable database connection, getAll, getById, and delete methods.
+
+Each entity DAO extends BaseDao and implements its own create and update methods using prepared statements.
+
+### Configuration
+Database connection settings are stored in `backend/config/config.php`.
+
+The configuration file is excluded from Git using `.gitignore`.
+
+The `backend/config/config.example.php` file provides an example configuration.
+
+### Testing
+All five DAO classes were tested successfully.
+
+Create, Read, Update, and Delete operations were verified for each entity using PHP and MySQL.
+
+### Current Project Scope
+Milestone 2 implements the relational database and DAO layer.
+
+Business logic, API endpoints, and frontend-backend integration will be implemented in later milestones.
+
