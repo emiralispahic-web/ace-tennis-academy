@@ -1,0 +1,9 @@
+{
+    "name": "emiralispahic-web/ace-tennis-academy",
+    "description": "Ace Tennis Academy Management System - Web Programming Course Project",
+    "license": "proprietary",
+    "require": {
+        "flightphp/core": "^3.19",
+        "zircote/swagger-php": "^7.6"
+    }
+}

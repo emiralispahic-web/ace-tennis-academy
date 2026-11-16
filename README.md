@@ -207,3 +207,166 @@ Milestone 2: MySQL database and PHP DAO layer.
 
 Business logic, API endpoints, and integration
 with the frontend will be added in later milestones.
+
+
+
+## Milestone 3 – Business Logic, REST API and OpenAPI Documentation
+
+### Overview
+
+Milestone 3 implements the backend business logic, REST API endpoints,
+OpenAPI documentation, and external API integration for the Ace Tennis
+Academy Management System.
+
+### Service Layer
+
+The service layer contains the following services:
+
+- BaseService
+- UserService
+- CoachService
+- CourtService
+- TrainingSessionService
+- BookingService
+- WeatherService
+
+The entity services communicate with the DAO layer and implement
+application-specific validation and business rules.
+
+Implemented business rules include:
+
+- User email validation and duplicate email prevention.
+- Secure password hashing.
+- Coach profiles must belong to users with the coach role.
+- Court surface, type, availability and price validation.
+- Prevention of overlapping court and coach schedules.
+- Training session date, time, price and capacity validation.
+- Only students can create training session bookings.
+- Prevention of duplicate bookings.
+- Prevention of bookings when a session is full.
+- Prevention of reducing session capacity below active bookings.
+- Pending and confirmed bookings count toward session capacity.
+
+### REST API
+
+The backend uses FlightPHP to provide REST API endpoints.
+
+| Resource | GET | POST | PUT | DELETE |
+|----------|-----|------|-----|--------|
+| Users | /users, /users/{id} | /users | /users/{id} | /users/{id} |
+| Coaches | /coaches, /coaches/{id} | /coaches | /coaches/{id} | /coaches/{id} |
+| Courts | /courts, /courts/{id} | /courts | /courts/{id} | /courts/{id} |
+| Training Sessions | /training-sessions, /training-sessions/{id} | /training-sessions | /training-sessions/{id} | /training-sessions/{id} |
+| Bookings | /bookings, /bookings/{id} | /bookings | /bookings/{id} | /bookings/{id} |
+
+The API contains 25 CRUD operations for the five database entities
+and one external weather API operation.
+
+The API returns JSON responses and appropriate HTTP status codes.
+
+### OpenAPI and Swagger Documentation
+
+All 25 CRUD operations and the weather endpoint are documented
+using swagger-php and OpenAPI 3.0.
+
+The documentation contains 26 API operations and 18 schemas.
+
+Swagger UI:
+
+http://localhost:8000/docs
+
+OpenAPI JSON:
+
+http://localhost:8000/openapi.json
+
+### External API Integration
+
+The application integrates OpenWeatherMap to provide current
+weather information for Sarajevo.
+
+Endpoint:
+
+GET /weather
+
+The weather information helps academy users plan outdoor tennis
+training sessions.
+
+The endpoint returns:
+
+- City
+- Temperature in Celsius
+- Feels-like temperature
+- Humidity
+- Weather description
+- Wind speed in km/h
+
+The WeatherService includes connection and request timeouts,
+external API response validation, friendly error messages and
+persistent error logging.
+
+If the external API is unavailable, the weather endpoint returns
+HTTP 503 without preventing the other application endpoints
+from working.
+
+Weather errors are recorded in backend/logs/weather.log.
+
+The API key is stored in the private configuration file and
+is not committed to GitHub.
+
+### Backend Setup
+
+1. Install PHP, Composer and MySQL.
+2. Import ace_tennis_academy.sql into MySQL.
+3. Copy backend/config/config.example.php to
+   backend/config/config.php.
+4. Configure the database connection and OpenWeatherMap API key.
+5. Install the backend dependencies:
+
+   cd backend
+   composer install
+   cd ..
+
+6. Start the PHP development server from the project root:
+
+   php -S localhost:8000 -t backend/public backend/public/index.php
+
+For Windows with XAMPP, PHP can be executed using:
+
+   C:\xampp\php\php.exe -S localhost:8000 -t backend/public backend/public/index.php
+
+7. Open Swagger UI at http://localhost:8000/docs.
+
+### Testing
+
+The following service tests are available:
+
+- backend/test_services.php
+- backend/test_coach_service.php
+- backend/test_court_service.php
+- backend/test_training_session_service.php
+- backend/test_booking_service.php
+- backend/test_service_crud.php
+- backend/test_openapi.php
+
+Testing was performed using PHP CLI, PowerShell, curl and Swagger UI.
+
+All five entity services passed CRUD testing. Business validation,
+scheduling conflicts, duplicate bookings and capacity restrictions
+were also tested.
+
+The external weather API was tested with both valid and invalid
+API keys. Successful requests returned HTTP 200, while failed
+requests returned HTTP 503 and generated an error log.
+
+### Milestone 3 Status
+
+Completed:
+
+- Business logic and service layer.
+- FlightPHP REST API endpoints.
+- OpenAPI documentation and Swagger UI.
+- OpenWeatherMap external API integration.
+- Service, API and validation testing.
+
+Authentication, authorization, JWT middleware and full frontend
+integration will be implemented in Milestone 4.
